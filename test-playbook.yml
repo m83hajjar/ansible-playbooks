@@ -1,6 +1,7 @@
----
-- name: Exécuter un script de test sur le serveur cible
-  hosts: target
+- hosts: target-server
+  become: true
   tasks:
-    - name: Lancer un script simple
-      shell: echo "✅ Script exécuté avec succès depuis Jenkins à $(date)" > /tmp/test_result.txt
+    - name: Créer un fichier de trace depuis Jenkins/Ansible
+      copy:
+        content: "Playbook exécuté via Jenkins à {{ ansible_date_time.iso8601 }}\n"
+        dest: /tmp/jenkins_ansible_trace.txt
