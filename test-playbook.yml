@@ -1,0 +1,6 @@
+---
+- name: Exécuter un script de test sur le serveur cible
+  hosts: target
+  tasks:
+    - name: Lancer un script simple
+      shell: echo "✅ Script exécuté avec succès depuis Jenkins à $(date)" > /tmp/test_result.txt
